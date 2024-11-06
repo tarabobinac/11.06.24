@@ -15,16 +15,15 @@ def show_chat_page():
     intro_emoji = st.radio(
         os.getenv('react_intro'),
         ["❤️", "😂", "😮", "😢", "😡", "👍", "👎"],
-        key="intro_reaction",
+        key="intro_react",
         index=None,
         horizontal=True,
         disabled=get_session_state('intro_reaction') is not None and get_session_state('user_input') is not None
     )
 
-    if intro_emoji and get_session_state('intro_reaction') is None:
+    if intro_emoji and get_session_state('intro_reaction') != intro_emoji:
         set_session_state('intro_reaction', intro_emoji)
-        st.success("Thank you for reacting to the introduction!")
-        st.experimental_rerun()
+        st.rerun()
 
     if not get_session_state('intro_reaction'):
         st.warning(os.getenv('intro_emoji'))
