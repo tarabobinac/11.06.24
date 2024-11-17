@@ -6,7 +6,6 @@ from utils.components import (add_reaction_buttons, get_input_and_gen_response, 
 from utils.session import get_session_state, set_session_state
 
 def show_chat_page():
-    st.markdown("HI")
     st.title(os.getenv('chatbot'))
 
     introduction = get_session_state('introduction')
